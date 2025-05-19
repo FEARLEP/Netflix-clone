@@ -1,9 +1,12 @@
+// App.js
+import React from 'react';
 import './App.css';
+import Home from './pages/home/home';
 
 function App() {
   return (
-    <div>
-      <h1>whazap</h1>
+    <div className="app">
+      <Home />
     </div>
   );
 }
