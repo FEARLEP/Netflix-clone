@@ -25,6 +25,10 @@ body {
   background-color: var(--netflix-dark);
   overflow-x: hidden;
 }
+.home-page {
+  color: transparent;
+  display: none;
+}
 
 /* ========== APP CONTAINER ========== */
 .netflix-app {
