@@ -1,25 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
+import Banner from '../../components/banner/banner';
+import axios from '../../utils/axios';
+import requests from '../../utils/requests';
 
 const Home = () => {
-  // Temporary data until you implement API fetching
-  const featuredContent = {
-    backdrop_path: 'https://image.tmdb.org/t/p/original/xYZ9QP5nFaNYwVUvJGSI1YwW0Qz.jpg'
-  };
+  const [featuredMovie, setFeaturedMovie] = useState(null);
+
+  useEffect(() => {
+    async function fetchFeatured() {
+      const response = await axios.get(requests.fetchNetflixOriginals);
+      const movies = response.data.results;
+      setFeaturedMovie(movies[Math.floor(Math.random() * movies.length)]);
+    }
+
+    fetchFeatured();
+  }, []);
 
   return (
     <div className="home-page">
-      <Header backgroundImage={featuredContent.backdrop_path} />
+      <Header backgroundImage={`https://image.tmdb.org/t/p/original${featuredMovie?.backdrop_path}`} />
       
       <main className="home-content">
-        {/* Content will go here */}
         <div className="content-placeholder">
           <h2>Featured Content</h2>
-          <p>This is where your featured content will appear</p>
+          <p>{featuredMovie?.overview || 'This is where your featured content will appear'}</p>
         </div>
       </main>
 
+      {/* Optionally pass the same movie to Banner too */}
+      <Banner movie={featuredMovie} />
       <Footer />
     </div>
   );

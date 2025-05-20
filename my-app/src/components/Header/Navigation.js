@@ -1,14 +1,35 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Navigation() {
   return (
     <nav className="main-nav" aria-label="Main navigation">
       <ul>
-        <li><a href="/browse">Home</a></li>
-        <li><a href="/tv-shows">TV Shows</a></li>
-        <li><a href="/movies">Movies</a></li>
-        <li><a href="/latest">New & Popular</a></li>
-        <li><a href="/mylist">My List</a></li>
+        <li>
+          <NavLink to="/browse" className={({ isActive }) => (isActive ? 'active' : '')}>
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/tv-shows" className={({ isActive }) => (isActive ? 'active' : '')}>
+            TV Shows
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/movies" className={({ isActive }) => (isActive ? 'active' : '')}>
+            Movies
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/latest" className={({ isActive }) => (isActive ? 'active' : '')}>
+            New & Popular
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/mylist" className={({ isActive }) => (isActive ? 'active' : '')}>
+            My List
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
