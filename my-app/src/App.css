@@ -17,7 +17,10 @@
 }
 
 body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin: 0;
+  background: #141414;
+  color: white;
+  font-family: Arial, sans-serif;
   color: var(--netflix-white);
   background-color: var(--netflix-dark);
   overflow-x: hidden;

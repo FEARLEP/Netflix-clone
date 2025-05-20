@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from "react";
-import axios from "..//../utils/axios"; // Your custom axios instance
-import requests from "..//..//utils/requests"; // Your TMDB endpoints
-
+import axios from "../../utils/axios";
+import requests from "../../utils/requests";
+import "./banner.css";
 function Banner() {
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
-    async function fetchData() {
+  async function fetchData() {
+    try {
       const response = await axios.get(requests.fetchNetflixOriginals);
-      const results = response.data.results;
-      setMovie(results[Math.floor(Math.random() * results.length)]);
+      console.log("API Response:", response.data.results); // Log the results
+      setMovie(response.data.results[0]); // Force the first movie for testing
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
-
-    fetchData();
-  }, []);
-
+  }
+  fetchData();
+}, []);
   const truncate = (str, n) => {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   };
 
-  const backgroundImage = movie?.backdrop_path
-    ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
-    : "";
+const backgroundImage = movie?.backdrop_path
+  ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
+  : 'https://via.placeholder.com/1920x1080'; // Fallback image
 
   return (
     <div
